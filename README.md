@@ -12,4 +12,8 @@ Descontinuado archivos 06/05
 Subi carpeta COMPELTA con todos los archivos con la clase CargarCatalogoCultivos.h 
 Incluye ejemplo.cpp y cultivos.txt para demostrar el funcionamiento
 
+16/05
+Power Ranger Rojo
+Subi carpeta srcDestinos
+Solo tiene la clase catalogoDestinos que busca la clase Destino dentro de la lista de Destinos, identico a la clase catalogoCultivos
 ******************
