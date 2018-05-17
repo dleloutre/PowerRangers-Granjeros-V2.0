@@ -6,78 +6,69 @@
 Almacen::Almacen(int fila, int columna, int dificultad, Lista<Cosecha*>* bodega)
 {
 	this->bodega = bodega;
-	capacidadDeUnAlmacen = 2*(fila+columna)*dificultad;
-	capacidadTotal = capacidadDeUnAlmacen;
-	capacidadOcupada = 0;
-	capacidadDisponible = capacidadTotal;
+	this->capacidadDeUnAlmacen = 2*(fila+columna)*dificultad;
+	this->capacidadTotal = this->capacidadDeUnAlmacen;
+	this->capacidadOcupada = 0;
+	this->capacidadDisponible = this->capacidadTotal;
 };
 
 unsigned int Almacen::obtenerCapacidadDisponible()
 {
-	return capacidadDisponible;
+	return this->capacidadDisponible;
 };
 
 unsigned int Almacen::obtenerCapacidadOcupada()
 {
-	return capacidadOcupada;
+	return this->capacidadOcupada;
 };
 
 unsigned int Almacen::obtenerCapacidadTotal()
 {
-	return capacidadTotal;
+	return this->capacidadTotal;
 };
 
 void Almacen::agregarCapacidadTotal()
 {
-	capacidadTotal+=capacidadDeUnAlmacen;
+	this->capacidadTotal+=this->capacidadDeUnAlmacen;
 };
 void Almacen::ocuparUnLugar()
 {
-	capacidadOcupada++;
-	capacidadDisponible--;
+	this->capacidadOcupada++;
+	this->capacidadDisponible--;
 };
 
 void Almacen::liberarUnLugar()
 {
-	capacidadOcupada--;
-	capacidadDisponible++;
+	this->capacidadOcupada--;
+	this->capacidadDisponible++;
 };
 
 bool Almacen::hayLugar()
 {
-	return this->capacidadDisponible>0;
+	return (this->capacidadDisponible>0);
 };
 
 
 int Almacen::agregarUnaCosecha(char tipoCosecha)
 {	int cosechaAgregada = 0;
 	if(hayLugar()){
+		Cosecha* claseCosecha = NULL;
+		bool encontroCosecha = false;
+		this->bodega->iniciarCursor();
+		while(bodega->avanzarCursor() && !encontroCosecha){
+			claseCosecha = bodega->obtenerCursor();
 
-
-		Cosecha* claseCosecha=NULL;
-			bool encontro = false;
-
-			this->bodega->iniciarCursor();
-
-			while(bodega->avanzarCursor() && !encontro){
-				claseCosecha = bodega->obtenerCursor();
-
-				if(claseCosecha->obtenerTipoCosecha() == tipoCosecha){
-					encontro = true;
-					claseCosecha->agregarUnaUnidadDeCosecha();
-
-				}
+			if(claseCosecha->obtenerTipoCosecha() == tipoCosecha){
+				encontroCosecha = true;
+				claseCosecha->agregarUnaUnidadDeCosecha();
 			}
-
-			if(encontro == false)
-				{
-					this->bodega->agregar(new Cosecha(tipoCosecha, 1));
-				}
-
-			cosechaAgregada = 1;
-			ocuparUnLugar();
-
-
+		}
+		if(encontroCosecha == false)
+			{
+				this->bodega->agregar(new Cosecha(tipoCosecha, 1));
+			}
+		cosechaAgregada = 1;
+		ocuparUnLugar();
 	}
 	return cosechaAgregada;
 };
@@ -85,14 +76,14 @@ int Almacen::agregarUnaCosecha(char tipoCosecha)
 int Almacen::obtenerCantidadCosecha(char tipoCosecha)
 {	int cantidad = 0;
 	Cosecha* claseCosecha=NULL;
-	bool encontro = false;
-		this->bodega->iniciarCursor();
-		while(bodega->avanzarCursor() && !encontro){
-			claseCosecha = bodega->obtenerCursor();
-			if(claseCosecha->obtenerTipoCosecha() == tipoCosecha){
-				cantidad = claseCosecha->obtenerCantidad();
-				encontro = true;
-				}
-			}
-		return cantidad;
+	bool encontroCosecha = false;
+	this->bodega->iniciarCursor();
+	while(bodega->avanzarCursor() && !encontroCosecha){
+		claseCosecha = bodega->obtenerCursor();
+		if(claseCosecha->obtenerTipoCosecha() == tipoCosecha){
+			cantidad = claseCosecha->obtenerCantidad();
+			encontroCosecha = true;
+		}
+	}
+	return cantidad;
 }
