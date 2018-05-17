@@ -1,31 +1,26 @@
-#include "Creditos.h"
+#include "Cosecha.h"
 
-BolsaCreditos::BolsaCreditos(int n, int m, int dificultad)
+Cosecha::Cosecha(char tipoCosecha, int cantidad)
 {
-	creditos = 2*(n*m)*dificultad;
+	this->tipoCosecha = tipoCosecha;
+	this->cantidadDeLaCosecha = cantidad;
 };
 
-bool BolsaCreditos::hayCreditosSuficientes(int creditos)
+int Cosecha::obtenerCantidad()
 {
-	return this->creditos >= creditos;
+	return this->cantidadDeLaCosecha;
+};
+
+char Cosecha::obtenerTipoCosecha()
+{
+	return this->tipoCosecha;
+
+};
+
+void Cosecha::agregarUnaUnidadDeCosecha()
+{
+	cantidadDeLaCosecha++;
 }
-int BolsaCreditos::pagar(int creditosAPagar)
-{	int creditosPagados= 0;
-	if(hayCreditosSuficientes(creditosAPagar))
-	{
-		this->creditos -= creditosAPagar;
-		creditosPagados = creditosAPagar;
-	}
-	return creditosPagados;
-};
 
-int BolsaCreditos::cobrar(int creditosACobrar)
-{
-	this->creditos += creditosACobrar;
-	return creditosACobrar;
-};
 
-int BolsaCreditos::obtenerCreditos()
-{
-	return this->creditos;
-	}
+
