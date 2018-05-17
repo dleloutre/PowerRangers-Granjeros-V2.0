@@ -26,7 +26,3 @@ public:
 
 #endif /* COSECHA_H_ */
 
-
-
-
-#endif /* COSECHA_H_ */
