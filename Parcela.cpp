@@ -1,5 +1,6 @@
 #include "Parcela.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 Parcela::Parcela(){
@@ -14,7 +15,7 @@ Parcela::Parcela(){
 
 void Parcela::sembrarParcela(char nombreCultivo, Lista<Semilla*>* semillas){
 	if (listoParaSembrar()){
-		InformacionSemilla informacionCultivo;
+		CatalogoSemillas informacionCultivo;
 		this->cultivo = nombreCultivo;
 		this->tiempoCrecimiento = (informacionCultivo.obtenerInformacionSemilla(semillas, this->cultivo)->obtenerTiempoCrecimiento());
 		this->estadoSiembra = true;
@@ -26,7 +27,7 @@ void Parcela::sembrarParcela(char nombreCultivo, Lista<Semilla*>* semillas){
 
 void Parcela::cosecharParcela(Lista<Semilla*>* semillas){
 	if (listoParaCosechar()){
-		InformacionSemilla informacionCultivo;
+		CatalogoSemillas informacionCultivo;
 		this->tiempoRecuperacion = (informacionCultivo.obtenerInformacionSemilla(semillas, this->cultivo)->obtenerTiempoRecuperacion());
 		this->cultivo = 'X';
 		this->estadoCosecha = true;
