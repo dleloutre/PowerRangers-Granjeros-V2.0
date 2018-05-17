@@ -1,7 +1,7 @@
 #ifndef PARCELA_H_
 #define PARCELA_H_
 
-#include "informacionSemilla.h"
+#include "CatalogoSemillas.h"
 #include "Lista.h"
 
 class Parcela {
@@ -63,6 +63,7 @@ class Parcela {
 		//POST: devuelve si la parcela esta lista para sembrar o no
 		bool listoParaSembrar();
 };
+
 
 
 
