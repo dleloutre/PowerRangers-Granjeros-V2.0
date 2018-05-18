@@ -16,4 +16,12 @@ Incluye ejemplo.cpp y cultivos.txt para demostrar el funcionamiento
 Power Ranger Rojo
 Subi carpeta srcDestinos
 Solo tiene la clase catalogoDestinos que busca la clase Destino dentro de la lista de Destinos, identico a la clase catalogoCultivos
+
+18/05
+Power Ranger Rojo
+Ambas carpetas actualizadas y listas para su uso
+
+
+
+FALTA CORROBORAR LOS NOMBRES DE LOS METODO Y ATRIBUTOS ETC
 ******************
