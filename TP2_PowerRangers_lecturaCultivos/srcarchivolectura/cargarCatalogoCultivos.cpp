@@ -11,9 +11,10 @@
 #include "cargarCatalogoCultivos.h"
 
 
-CargaCatalogoCultivos::CargaCatalogoCultivos(Lista<Cultivo*>* cultivos){
+CargaCatalogoCultivos::CargaCatalogoCultivos(/*Lista<Cultivo*>* cultivos*/){
 
-	this -> cultivos = cultivos;
+
+	this -> cultivos = new Lista <Cultivo*>;
 
 }
 
@@ -47,74 +48,38 @@ void CargaCatalogoCultivos::leerArchivo(std::string rutaEntrada) {
 }
 
 
-void CargaCatalogoCultivos::cargarStringAVector(std::string stringLinea){
+void CargaCatalogoCultivos::cargarStringAVector(std::string getLinea){
 
 	int i=0;
 
+	Traductor Traductor;
+
 	//crea un vector para almacenar cada dato del txt.
-	std::string vectorDeStrings[5];
+	std::string vectorDeStrings[6];
 
-	//guarda el primer dato (A,B,C etc)
-	char semilla = stringLinea[i];
-
-	i+=2; //saltea la primera letra y la coma
-
-	//carga el vector con los datos de la linea, sin incluir la primera letra
-	for (int j=0; j<= 4; j++){ //
-		while(stringLinea[i] != ',' && stringLinea[i]!= '\0'){
-			vectorDeStrings[j] =  vectorDeStrings[j] + stringLinea[i];
+	//carga el vector con los datos de la linea
+	for (int j=0; j<= 5; j++){ //
+		while(getLinea[i] != ',' && getLinea[i]!= '\0'){
+			vectorDeStrings[j] =  vectorDeStrings[j] + getLinea[i];
 			i++;
 		}
 		i++;
 	}
 
 
-	int vectorCultivos[5];
-
-	this->convertirVectorAEnteros(vectorCultivos, vectorDeStrings);
-
-	this->agregarDatosVectorComoPunteroALaLista(vectorCultivos, semilla);
-
-	return;
-}
-
-void CargaCatalogoCultivos::convertirVectorAEnteros(int vectorCultivos[], std::string vectorDeStrings[]){
-	/*crea un vectorCultivos de enteros y le pasa los strings del
-	vectorDeStrings como int
-	*/
-
-	int i,valor;
-
-	// cambia los string a enteros
-	for (i=0; i<5; i++){
-		std::istringstream buffer(vectorDeStrings[i]);
-		valor=0; //si ocurre algo, por defecto pone un 0
-		buffer >> valor;
-		vectorCultivos[i]=valor;
-
-	}
-
-	return;
-}
-
-
-// ********** funcion asignar puntero (vectorcultivos puntero a vectorcultivos
-
-void CargaCatalogoCultivos::agregarDatosVectorComoPunteroALaLista(int vectorCultivos[], char semilla){
-
 	Cultivo* ptrEstrella;
 
-	char cultivo = semilla;
+	std::string cultivo = vectorDeStrings[0];
 
-	int costoSemilla=vectorCultivos[0];
+	int costoSemilla= Traductor.convertirAEntero(vectorDeStrings[1]);
 
-	int tiempoCosecha=vectorCultivos[1];
+	int tiempoCosecha=Traductor.convertirAEntero(vectorDeStrings[2]);
 
-	int rentabilidad=vectorCultivos[2];
+	int rentabilidad=Traductor.convertirAEntero(vectorDeStrings[3]);
 
-	int tiempoRecuperacion=vectorCultivos[3];
+	int tiempoRecuperacion=Traductor.convertirAEntero(vectorDeStrings[4]);
 
-	int aguaTurno=vectorCultivos[4];
+	int aguaTurno=Traductor.convertirAEntero(vectorDeStrings[5]);
 
 	/*asigno un espacio en el heap para un puntero a una Estrella*/
 	ptrEstrella = new Cultivo(cultivo, costoSemilla, tiempoCosecha,
@@ -123,14 +88,21 @@ void CargaCatalogoCultivos::agregarDatosVectorComoPunteroALaLista(int vectorCult
 	this->cultivos->agregar(ptrEstrella);
 
 
+	return;
 }
 
 
 
 
+/////
+Lista<Cultivo*>* CargaCatalogoCultivos::obtenerPunteroAListaDeCultivos(){
+
+	return this ->cultivos;
+}
+
+
 
 CargaCatalogoCultivos::~CargaCatalogoCultivos(){
-
 
 	cultivos->iniciarCursor();
 
@@ -139,5 +111,7 @@ CargaCatalogoCultivos::~CargaCatalogoCultivos(){
 
 		delete PtrABorrar;
 	}
+
+	delete this ->cultivos;
 
 }

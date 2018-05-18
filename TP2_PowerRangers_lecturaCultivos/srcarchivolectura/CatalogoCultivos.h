@@ -18,7 +18,7 @@ class CatalogoCultivos{
 		/*
 		 *
 		 */
-		Cultivo* obtenerCultivo(Lista <Cultivo*>* cultivos, char cultivo); //CLASE DISTINTA Y LE PASO LA LISTA, COMO EN ASTRONOMOS
+		Cultivo* obtenerCultivo(Lista <Cultivo*>* cultivos, std::string cultivo); //CLASE DISTINTA Y LE PASO LA LISTA, COMO EN ASTRONOMOS
 
 
 

@@ -10,10 +10,12 @@
 
 #include "Cultivo.h"
 #include "Lista.h"
+#include "Traductor.h"
 
 class CargaCatalogoCultivos{
 
 	private:
+
 
 		Lista<Cultivo*>* cultivos; // TAL VEZ NO
 
@@ -23,7 +25,7 @@ class CargaCatalogoCultivos{
 		/*
 		 * post: constructor recibe puntero a la lista de cultivos;
 		 */
-		CargaCatalogoCultivos(Lista<Cultivo*>* cultivos);
+		CargaCatalogoCultivos(/*Lista<Cultivo*>* cultivos*/);
 
 
 		/*
@@ -39,17 +41,11 @@ class CargaCatalogoCultivos{
 		 */
 		void cargarStringAVector(std::string stringLinea);
 
-		/*
-		 * post: recibe un vector de strings y los convierte a enteros vectorDeEnteros
-		 */
-
-		void convertirVectorAEnteros(int vectorDeEnteros[], std::string vectorDeStrings[]);
 
 		/*
-		 * post: inicializa el constructor Cultivo con los datos del vectorDeEnteros y los incluye en un puntero
-		 *  y agrega dicho puntero a la lista de cultivos
+		 *
 		 */
-		void agregarDatosVectorComoPunteroALaLista(int vectorDeEnteros[], char semilla);
+		Lista<Cultivo*>* obtenerPunteroAListaDeCultivos();
 
 		/*
 		 * post: libera cada puntero a cultivo que se fueron agregando

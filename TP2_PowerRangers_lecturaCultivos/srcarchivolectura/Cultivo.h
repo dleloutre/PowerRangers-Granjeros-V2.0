@@ -14,7 +14,7 @@ class Cultivo{
 
 	private:
 
-		char cultivo;
+		std::string cultivo;
 
 		int costoSemilla;
 
@@ -32,7 +32,7 @@ class Cultivo{
 		 * post: instancia de 'Cultivo' inicializada
 		 */
 
-		Cultivo(char cultivo, int costo, int tiempoCosecha,
+		Cultivo(std::string cultivo, int costo, int tiempoCosecha,
 				int renta, int tiempo, int agua){
 
 			this -> cultivo = cultivo;
@@ -53,7 +53,7 @@ class Cultivo{
 		 * post: devuelve el dato 'cultivo'
 		 */
 
-		char obtenerCultivo(){
+		std::string obtenerCultivo(){
 
 			return this -> cultivo;
 

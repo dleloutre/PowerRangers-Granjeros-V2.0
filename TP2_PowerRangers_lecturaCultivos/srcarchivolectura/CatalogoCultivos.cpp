@@ -10,7 +10,7 @@
 #include "CatalogoCultivos.h"
 
 
-Cultivo* CatalogoCultivos::obtenerCultivo(Lista<Cultivo*>* cultivos, char cultivo){
+Cultivo* CatalogoCultivos::obtenerCultivo(Lista<Cultivo*>* cultivos, std::string cultivo){
 
 
 	Cultivo* claseCultivo=NULL;
@@ -19,9 +19,10 @@ Cultivo* CatalogoCultivos::obtenerCultivo(Lista<Cultivo*>* cultivos, char cultiv
 	cultivos->iniciarCursor();
 
 	while(cultivos->avanzarCursor() && !encontro){
-		claseCultivo = cultivos->obtenerCursor();
 
-		if(claseCultivo->obtenerCultivo() == cultivo){
+
+		if(cultivos->obtenerCursor()->obtenerCultivo() == cultivo){
+			claseCultivo = cultivos->obtenerCursor() ;
 			encontro = true;
 		}
 	}

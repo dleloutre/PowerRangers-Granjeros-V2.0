@@ -17,27 +17,21 @@ int main() {
 
 	std::string archivoCultivos = "cultivos.txt";
 
-	//creo lista de punteros a estrellas
-	Lista<Cultivo*> listaCultivos;
+	//creo un puntero que apunta a listaCultivos
+	Lista <Cultivo*>* cultivos;//= &listaCultivos;
 
-	//creo un puntero que apunta a listaEstrellas
-	Lista <Cultivo*>* cultivos= &listaCultivos;
-
-	CargaCatalogoCultivos cargarCatalogo(cultivos);
+	CargaCatalogoCultivos cargarCatalogo;//(cultivos);
 
 	cargarCatalogo.leerArchivo(archivoCultivos);
 
-	//completarCatalogo.cargarCatalogoConArchivoDestino(archivodestinostxt)
-
-	//classAlmacen almacen (cultivos);
-
-	// ver ejercicio mensajeria para manejo de listas
-
 	//testeo
+
+	//
+	cultivos = cargarCatalogo.obtenerPunteroAListaDeCultivos();
 
 	CatalogoCultivos catalogo;
 
-	Cultivo* cultivo = catalogo.obtenerCultivo(cultivos,'A');
+	Cultivo* cultivo = catalogo.obtenerCultivo(cultivos,"A");
 
 	std::cout << cultivo->obtenerRentabilidad() << std::endl;
 
