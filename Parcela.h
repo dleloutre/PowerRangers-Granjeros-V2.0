@@ -12,7 +12,8 @@ class Parcela {
 		bool estadoCosecha;
 		int tiempoRecuperacion;
 		int tiempoCrecimiento;
-		bool cultivoPerdido;
+		bool cultivoPodrido;
+		bool cultivoSeco;
 
 	public:
 
@@ -43,8 +44,11 @@ class Parcela {
 		//POST: devuelve el nombre del cultivo
 		char obtenerCultivo();
 
-		//POST: devuelve si el cultivo se echo a perder
-		bool obtenerCultivoPerdido();
+		//POST: devuelve si el cultivo se echo a perder por falta de cosecha
+		bool obtenerCultivoPodrido();
+
+		//POST: devuelve si el cultivo se seco por falta de riego
+		bool obtenerCultivoSeco();
 
 		//POST: devuelve el tiempo de recuperacion de la parcela para poder ser sembrada
 		int obtenerTiempoRecuperacion();
@@ -54,8 +58,11 @@ class Parcela {
 
 	private:
 
-		//POST: echa a perder la parcela
+		//POST: echa a perder la parcela por no cosechar a tiempo
 		void pudrirParcela();
+
+		//POST: seca la parcela por falta de riego
+		void secarParcela();
 
 		//POST: devuelve si la parcela esta lista para cosechar o no
 		bool listoParaCosechar();
@@ -66,5 +73,5 @@ class Parcela {
 
 
 
-
 #endif /* PARCELA_H_ */
+
