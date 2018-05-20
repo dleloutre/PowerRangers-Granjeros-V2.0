@@ -10,7 +10,8 @@ Parcela::Parcela(){
 	this->estadoSiembra = false;
 	this->tiempoCrecimiento = 0;
 	this->tiempoRecuperacion = 0;
-	this->cultivoPerdido = false;
+	this->cultivoPodrido = false;
+	this->cultivoSeco = false;
 }
 
 void Parcela::sembrarParcela(char nombreCultivo, Lista<Semilla*>* semillas){
@@ -62,8 +63,12 @@ char Parcela::obtenerCultivo(){
 	return this->cultivo;
 }
 
-bool Parcela::obtenerCultivoPerdido(){
-	return this->cultivoPerdido;
+bool Parcela::obtenerCultivoPodrido(){
+	return this->cultivoPodrido;
+}
+
+bool Parcela::obtenerCultivoSeco(){
+	return this->cultivoSeco;
 }
 
 int Parcela::obtenerTiempoRecuperacion(){
@@ -75,12 +80,17 @@ int Parcela::obtenerTiempoCrecimiento(){
 }
 
 void Parcela::pudrirParcela() { //esto se usaria al final del turno de cada jugador
-	if ((!this->regado()) || (this->listoParaCosechar())) {
-		this->cultivoPerdido = true;
+	if (this->listoParaCosechar()) {
+		this->cultivoPodrido = true;
 		this->cultivo = 'X';
-		if (this->listoParaCosechar()) {
-			this->tiempoRecuperacion = this->tiempoRecuperacion / 2;
-		}
+		this->tiempoRecuperacion = this->tiempoRecuperacion / 2;
+	}
+}
+
+void Parcela::secarParcela() {
+	if (!this->regado()){
+		cultivoSeco = true;
+		this->cultivo = 'X';
 	}
 }
 
