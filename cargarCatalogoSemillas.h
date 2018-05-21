@@ -3,10 +3,11 @@
 
 #include "Semilla.h"
 #include "Lista.h"
+#include "Traductor.h"
 
-const int CANTIDAD_DATOS_SEMILLAS = 5;
+const int CANTIDAD_DATOS_SEMILLAS = 6;
 
-class CargaCatalogoSemillas{
+class CargarCatalogoSemillas{
 
 	private:
 
@@ -15,43 +16,39 @@ class CargaCatalogoSemillas{
 	public:
 
 		/*
-		 * post: constructor recibe puntero a la lista de cultivos;
+		 * post: crea una lista de punteros a clase Cultivo y
+		 * la asigna a 'cultivos'
 		 */
-		CargaCatalogoSemillas(Lista<Semilla*>* semillas);
+		CargarCatalogoSemillas();
 
 
 		/*
-		 * post: lee un archivo txt, y agrega los datos a una
-		 * lista de punteros a semillas
+		 * post: lee el archivo .txt a recibido por 'rutaEntrada'
 		 */
 		void leerArchivo(std::string rutaEntrada);
 
 
 		/*
-		 * pre: recibe un string tipo getline del archivo cultivos.txt
-		 * post: cargar los datos en un vector y se los pasa a
+		 * pre:
+		 * post: recibe un string tipo getline del metodo leerArchivo
+		 * cargar los datos en un vector, los convierte a enteros y se los pasa
+		 * al constructor Cultivo y los agrega a la lista 'cultivos'
 		 */
-		void cargarStringAVector(std::string stringLinea);
+		void cargarStringASemilla (std::string stringLinea);
 
 		/*
-		 * post: recibe un vector de strings y los convierte a enteros vectorDeEnteros
+		 * post: devuelve el atributo 'cultivos'
 		 */
-
-		void convertirVectorAEnteros(int vectorDeEnteros[], std::string vectorDeStrings[]);
-
-		/*
-		 * post: inicializa el constructor Semilla con los datos del vectorDeEnteros y los incluye en un puntero
-		 *  y agrega dicho puntero a la lista de semillas
-		 */
-		void agregarDatosVectorComoPunteroALaLista(int vectorDeEnteros[], char semilla);
+		Lista<Semilla*>* obtenerPunteroAListaDeSemillas();
 
 		/*
 		 * post: libera cada puntero a semilla que se fueron agregando
 		 * como datos a la lista
 		 */
-		~CargaCatalogoSemillas();
+		~CargarCatalogoSemillas();
 
 };
 
 
 #endif /* CARGARCATALOGOSEMILLAS_H_ */
+
