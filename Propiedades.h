@@ -3,6 +3,8 @@
 
 #include "Lista.h"
 #include "Terreno.h"
+const int CANTIDAD_MINIMA_FILAS = 2;
+const int CANTIDAD_MINIMA_COLUMNAS = 2;
 
 class Propiedades {
 
@@ -11,11 +13,11 @@ class Propiedades {
 
 	public:
 
-		//POST: crea una lista con punteros a Terreno
-		Propiedades();
+		//POST: crea una lista con punteros a Terreno y agrega un terreno inicial
+		Propiedades(float dificultad);
 
 		//POST: agrega un terreno de 'dimension' filas y 'dimension' columnas a la lista de terrenos
-		void comprarTerreno (Terreno* terreno);
+		void comprarTerreno (float dificultad);
 
 		//PRE: debe haber por lo menos un terreno en la lista de terrenos
 		//POST: elimina de la lista de terrenos 'terrenoEnVenta'
