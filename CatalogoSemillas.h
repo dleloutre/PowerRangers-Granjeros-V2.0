@@ -11,7 +11,7 @@ class CatalogoSemillas{
 		/*
 		 *
 		 */
-		Semilla* obtenerInformacionSemilla(Lista <Semilla*>* semillas, char nombreSemillaSeleccionada); //CLASE DISTINTA Y LE PASO LA LISTA, COMO EN ASTRONOMOS
+		Semilla* obtenerInformacionSemilla(Lista <Semilla*>* semillas, std::string nombreSemillaSeleccionada); //CLASE DISTINTA Y LE PASO LA LISTA, COMO EN ASTRONOMOS
 
 };
 
