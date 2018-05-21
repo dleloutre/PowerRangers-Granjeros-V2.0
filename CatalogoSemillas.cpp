@@ -1,7 +1,6 @@
 #include "CatalogoSemillas.h"
 
-Semilla* CatalogoSemillas::obtenerInformacionSemilla(Lista<Semilla*>* semillas, char nombreSemillaSeleccionada){
-
+Semilla* CatalogoSemillas::obtenerInformacionSemilla(Lista<Semilla*>* semillas, std::string nombreSemillaSeleccionada){
 
 	Semilla* semilla=NULL;
 	bool semillaEncontrada = false;
@@ -11,11 +10,10 @@ Semilla* CatalogoSemillas::obtenerInformacionSemilla(Lista<Semilla*>* semillas, 
 	while(semillas->avanzarCursor() && !semillaEncontrada){
 		semilla = semillas->obtenerCursor();
 
-		if(semilla->obtenerNombre() == nombreSemillaSeleccionada){
-			semillaEncontrada = true;
-		}
+		if(semillas->obtenerCursor()->obtenerNombre() == nombreSemillaSeleccionada){
+					semilla = semillas->obtenerCursor() ;
+					semillaEncontrada = true;
+				}
 	}
-
 	return semilla;
-
 }
