@@ -1,31 +1,18 @@
 #include "Terreno.h"
 
-Terreno::Terreno(){
+Terreno::Terreno(unsigned int filas, unsigned int columnas){
 	Parcela crearParcela;
-	this->tamanio = TAMANIO_MINIMO;
+	this->posicionTerreno = 1;
 	this->accesoATerreno = NULL;
-	this->terreno = new Parcela* [this->tamanio];
-	for (unsigned int a=0; a < this->tamanio; a++){
-			this->terreno[a] = new Parcela[this->tamanio];
-		}
-	for (unsigned int i=0; i<this->tamanio; i++) {
-		for (unsigned int j=0; j<this->tamanio; j++) {
-			terreno[i][j] = crearParcela;
-		}
-	}
-}
-
-Terreno::Terreno(unsigned int tamanio){
-	Parcela crearParcela;
-	this->accesoATerreno = NULL;
-	this->tamanio = tamanio;
-	this->terreno = new Parcela* [this->tamanio];
-	for (unsigned int a=0; a < this->tamanio; a++){
-			this->terreno[a] = new Parcela[this->tamanio];
+	this->filas = filas;
+	this->columnas = columnas;
+	this->terreno = new Parcela* [this->filas];
+	for (unsigned int a=0; a < this->filas; a++){
+			this->terreno[a] = new Parcela[this->columnas];
 		}
 
-	for (unsigned int i=0; i<this->tamanio; i++) {
-		for (unsigned int j=0; j<this->tamanio; j++) {
+	for (unsigned int i=0; i<this->filas; i++) {
+		for (unsigned int j=0; j<this->columnas; j++) {
 			terreno[i][j] = crearParcela;
 		}
 	}
@@ -35,17 +22,29 @@ Parcela Terreno::obtenerParcela(unsigned int posicionFila, unsigned int posicion
 	return this->terreno[posicionFila-1][posicionColumna-1];
 }
 
-Parcela* Terreno::modificarTerreno(unsigned int posicionFila, unsigned int posicionColumna){
+Parcela* Terreno::modificarParcela(unsigned int posicionFila, unsigned int posicionColumna){
 	this->accesoATerreno = &this->terreno[posicionFila-1][posicionColumna-1];
 	return this->accesoATerreno;
 }
 
-unsigned int Terreno::obtenerTamanio(){
-	return this->tamanio;
+unsigned int Terreno::obtenerFilas(){
+	return this->filas;
+}
+
+unsigned int Terreno::obtenerColumnas(){
+	return this->columnas;
+}
+
+unsigned int Terreno::obtenerPosicionTerreno(){
+	return this->posicionTerreno;
+}
+
+void Terreno::siguienteTerreno(){
+	this->posicionTerreno++;
 }
 
 Terreno::~Terreno(){
-	for(unsigned int i = 0; i < this->tamanio; i++)
+	for(unsigned int i = 0; i < this->filas; i++)
 	   delete [] this->terreno[i];
 	delete [] this->terreno;
 }
