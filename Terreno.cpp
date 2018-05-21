@@ -2,7 +2,6 @@
 
 Terreno::Terreno(unsigned int filas, unsigned int columnas){
 	Parcela crearParcela;
-	this->posicionTerreno = 1;
 	this->accesoATerreno = NULL;
 	this->filas = filas;
 	this->columnas = columnas;
@@ -33,14 +32,6 @@ unsigned int Terreno::obtenerFilas(){
 
 unsigned int Terreno::obtenerColumnas(){
 	return this->columnas;
-}
-
-unsigned int Terreno::obtenerPosicionTerreno(){
-	return this->posicionTerreno;
-}
-
-void Terreno::siguienteTerreno(){
-	this->posicionTerreno++;
 }
 
 Terreno::~Terreno(){
