@@ -1,26 +1,29 @@
 #include "Cosecha.h"
 
-Cosecha::Cosecha(char tipoCosecha, int cantidad)
+Cosecha::Cosecha(std::string tipoCosecha, unsigned int cantidad)
 {
 	this->tipoCosecha = tipoCosecha;
 	this->cantidadDeLaCosecha = cantidad;
-};
+}
 
-int Cosecha::obtenerCantidad()
+unsigned int Cosecha::obtenerCantidad()
 {
 	return this->cantidadDeLaCosecha;
-};
+}
 
-char Cosecha::obtenerTipoCosecha()
+std::string Cosecha::obtenerTipoCosecha()
 {
 	return this->tipoCosecha;
 
-};
+}
 
 void Cosecha::agregarUnaUnidadDeCosecha()
 {
-	cantidadDeLaCosecha++;
+	this->cantidadDeLaCosecha++;
 }
 
-
+void Cosecha::eliminarCantidadCosecha()
+{
+	this->cantidadDeLaCosecha = 0;
+}
 
