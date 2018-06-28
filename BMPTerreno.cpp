@@ -1,3 +1,10 @@
+/*
+ * BMPTerreno.cpp
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #include "BMPTerreno.h"
 
 void BMPTerreno::guardarTerrenoEnBMP(int argc, char* argv[], Terreno* terreno,

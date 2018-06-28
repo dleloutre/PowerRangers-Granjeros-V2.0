@@ -1,3 +1,10 @@
+/*
+ * CatalogoDestinos.h
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #ifndef CATALOGODESTINOS_H_
 #define CATALOGODESTINOS_H_
 
@@ -17,3 +24,7 @@ class CatalogoDestinos{
 		Destino* obtenerDestino (Lista <Destino*>* destinos, unsigned int posicion);
 
 };
+
+
+
+#endif /* CATALOGODESTINOS_H_ */

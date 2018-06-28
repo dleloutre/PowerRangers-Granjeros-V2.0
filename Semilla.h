@@ -1,3 +1,10 @@
+/*
+ * Cultivo.h
+ *
+ *  Created on: 12 may. 2018
+ *      Author: daniela
+ */
+
 
 #ifndef SEMILLA_H_
 #define SEMILLA_H_
@@ -8,7 +15,7 @@ class Semilla{
 
 	private:
 
-		char nombre;
+		std::string nombre;
 
 		int costo;
 
@@ -26,7 +33,7 @@ class Semilla{
 		 * post: instancia de 'Semilla' inicializada
 		 */
 
-		Semilla (char nombre, int costo,
+		Semilla (std::string nombre, int costo,
 				int renta, int tiempoCrecimiento, int tiempoRecuperacion, int agua){
 
 			this -> nombre = nombre;
@@ -44,16 +51,16 @@ class Semilla{
 		}
 
 		/*
-		 * post: devuelve el dato 'nombre'
+		 * post: devuelve el nombre de la semilla
 		 */
 
-		char obtenerNombre(){
+		std::string obtenerNombre(){
 
 			return this -> nombre;
 		}
 
 		/*
-		 * post: devuelve el dato 'costo'
+		 * post: devuelve el costo de la semilla
 		 */
 
 		int obtenerCostoSemilla(){
@@ -63,7 +70,7 @@ class Semilla{
 		}
 
 		/*
-		 * post: devuelve el dato 'rentabilidad'
+		 * post: devuelve la rentabilidad de la semilla
 		 */
 
 		int obtenerRentabilidad(){
@@ -72,20 +79,23 @@ class Semilla{
 		}
 
 		/*
-		 * post: devuelve el dato 'tiempoRecuperacion'
+		 * post: devuelve la cantidad de turnos necesarios para poder cosechar el cultivo
 		 */
 
 		int obtenerTiempoCrecimiento(){
 			return this->tiempoCrecimiento;
 		}
 
+		/*
+		 * post: devuelve la cantidad de turnos necesarios para poder plantar una nueva semilla
+		 */
 		int obtenerTiempoRecuperacion(){
 
 			return this ->tiempoRecuperacion;
 		}
 
 		/*
-		 * post: devuelve el dato 'consumoAgua'
+		 * post: devuelve la cantidad de agua necesaria para regar un cultivo
 		 */
 		int obtenerConsumoAgua(){
 
@@ -95,7 +105,3 @@ class Semilla{
 
 
 #endif /* SEMILLA_H_ */
-
-
-
-#endif /* CULTIVO_H_ */

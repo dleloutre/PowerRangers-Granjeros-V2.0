@@ -1,3 +1,10 @@
+/*
+ * CatalogoSemillas.cpp
+ *
+ *  Created on: 17 may. 2018
+ *      Author: daniela
+ */
+
 #include "CatalogoSemillas.h"
 
 Semilla* CatalogoSemillas::obtenerInformacionSemilla(Lista<Semilla*>* semillas, std::string nombreSemillaSeleccionada){
@@ -33,3 +40,5 @@ Semilla* CatalogoSemillas::obtenerInformacionSemilla(Lista <Semilla*>* semillas,
 	}
 	return semilla;
 }
+
+

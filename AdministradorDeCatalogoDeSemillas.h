@@ -1,3 +1,10 @@
+/*
+ * cargarCatalogoSemillas.h
+ *
+ *  Created on: 17 may. 2018
+ *      Author: daniela
+ */
+
 #ifndef ADMINISTRADORDECATALOGODESEMILLAS_H_
 #define ADMINISTRADORDECATALOGODESEMILLAS_H_
 
@@ -56,4 +63,3 @@ class AdministradorDeCatalogoDeSemillas{
 
 
 #endif /* ADMINISTRADORDECATALOGODESEMILLAS_H_ */
-

@@ -1,3 +1,10 @@
+/*
+ * BolsaSemilla.h
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
+
 #ifndef COSECHA_H_
 #define COSECHA_H_
 

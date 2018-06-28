@@ -1,3 +1,10 @@
+/*
+ * CargarCatalogoDestinos.cpp
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #include <fstream>
 #include <sstream>
 
@@ -85,3 +92,6 @@ AdministradorDeCatalogoDestinos::~AdministradorDeCatalogoDestinos(){
 	delete this ->destinos;
 
 }
+
+
+

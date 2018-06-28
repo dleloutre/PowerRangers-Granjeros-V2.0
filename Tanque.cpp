@@ -1,71 +1,58 @@
-#include "Tanque.h"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+/*
+ * Tanque.cpp
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
 
-Tanque::Tanque(int n, int m, float dificultad)
+#include "Tanque.h"
+
+Tanque::Tanque(float dificultad)
 {
-	this->capacidadTotal = n*m*dificultad;
-	this->capacidadOcupada = 0;
+	this->capacidadTotal = CAPACIDAD_BASE_TANQUE_DE_AGUA/dificultad;
+	this->cantidadAguaDisponible = 0;
 	this->capacidadLibre = this->capacidadTotal;
-	this->aguaDisponiblePorEsteTurno = 0;
+	this->costoAumentoDeCapacidad = (COSTO_CAPACIDAD_TANQUE_DE_AGUA)*dificultad;
 }
 
-int Tanque::obtenerCapacidadTotal()
+unsigned int Tanque::obtenerCapacidadTotal()
 {
 	return capacidadTotal;
-};
-
-int Tanque::obtenerCapacidadLibre()
-{
-	return this->capacidadLibre;
-};
-
-int Tanque::obtenerCapacidadOcupada()
-{
-	return this->capacidadOcupada;
-};
-
-
-int Tanque::determinarAguaPorEsteTurno()
-{
-	int dado = (rand() % 6 )+1;
-	int aguaAleatoria = (5*dado);
-	this->aguaDisponiblePorEsteTurno = aguaAleatoria + this->capacidadOcupada;
-	aguaAleatoria = 0;
-	return this-> aguaDisponiblePorEsteTurno;
-};
-
-int Tanque::obtenerAguaDisponible()
-{
-	return this->aguaDisponiblePorEsteTurno;
 }
 
-int Tanque::utilizarAgua(Lista<Semilla*>* semillas, char nombreSemillaSeleccionada)
-{	int aguaUtilizada = 0;
-	CatalogoSemillas catalogo;
-	Semilla* semillaDeCatalogo = catalogo.obtenerInformacionSemilla(semillas, nombreSemillaSeleccionada);
-
-	int cantidadDeAguaParaRegar = semillaDeCatalogo->obtenerConsumoAgua();
-
-	if(this->aguaDisponiblePorEsteTurno >= cantidadDeAguaParaRegar)
-	{
-		this->aguaDisponiblePorEsteTurno = this->aguaDisponiblePorEsteTurno - cantidadDeAguaParaRegar;
-		aguaUtilizada = cantidadDeAguaParaRegar;
-	}
-	return aguaUtilizada;
-};
-
-void Tanque::actualizarCapacidades()
+unsigned int Tanque::obtenerCantidadAguaDisponible()
 {
-	if(this->aguaDisponiblePorEsteTurno >= this->capacidadTotal)
-	{
-		this->capacidadLibre = 0;
-		this->capacidadOcupada = this->capacidadTotal;
+	return this->cantidadAguaDisponible;
+}
+
+unsigned int Tanque::obtenerCapacidadLibre()
+{
+	return this->capacidadLibre;
+}
+
+unsigned int Tanque::obtenerCostoAumentoDeCapacidad(){
+	return this->costoAumentoDeCapacidad;
+}
+
+
+void Tanque::cargarTanque(unsigned int cantidadDeAguaPorCargar){
+
+	while ((this->capacidadLibre <= this->capacidadTotal) && (cantidadDeAguaPorCargar > 0)){
+		this->cantidadAguaDisponible ++;
+		this->capacidadLibre --;
+		cantidadDeAguaPorCargar--;
 	}
-	else
-	{	this->capacidadOcupada = this->aguaDisponiblePorEsteTurno;
-		this->capacidadLibre = this->capacidadTotal - this->capacidadOcupada;
-	}
-	this->aguaDisponiblePorEsteTurno = this->capacidadOcupada;
-};
+}
+
+
+void Tanque::utilizarAgua(unsigned int cantidadAguaParaRiego){
+
+		this->cantidadAguaDisponible -= cantidadAguaParaRiego;
+		this->capacidadLibre += cantidadAguaParaRiego;
+}
+
+
+
+void Tanque::comprarCapacidad(float dificultad){
+	this->capacidadTotal+=(CAPACIDAD_BASE_TANQUE_DE_AGUA/dificultad);
+}

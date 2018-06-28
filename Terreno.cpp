@@ -1,41 +1,84 @@
+/*
+ * Terreno.cpp
+ *
+ *  Created on: 12 may. 2018
+ *      Author: daniela
+ */
 #include "Terreno.h"
 
-Terreno::Terreno(unsigned int filas, unsigned int columnas){
-	Parcela crearParcela;
-	this->accesoATerreno = NULL;
-	this->filas = filas;
-	this->columnas = columnas;
-	this->terreno = new Parcela* [this->filas];
-	for (unsigned int a=0; a < this->filas; a++){
-			this->terreno[a] = new Parcela[this->columnas];
+Terreno::Terreno(unsigned int cantidadFilas, unsigned int cantidadColumnas, unsigned int valor){
+	this->posicionTerreno = 1;
+	this->accesoAParcela = NULL;
+	this->valor = valor;
+	this->precioVenta = valor/IMPUESTO_A_LA_VENTA;
+	this->cantidadFilas = cantidadFilas;
+	this->cantidadColumnas = cantidadColumnas;
+	this->terreno = new Lista<Lista<Parcela*>*>;
+	for (unsigned int i = 1; i <= this->cantidadFilas; i++) {
+		Lista<Parcela*>* parcelas = new Lista<Parcela*>;
+		for (unsigned int j = 1; j <= this->cantidadColumnas; j++){
+			Parcela* parcelaNueva = new Parcela;
+			parcelas->agregar(parcelaNueva);
 		}
+		this->terreno->agregar(parcelas);
+	}
+}
 
-	for (unsigned int i=0; i<this->filas; i++) {
-		for (unsigned int j=0; j<this->columnas; j++) {
-			terreno[i][j] = crearParcela;
+Parcela* Terreno::obtenerParcela(unsigned int posicionFila, unsigned int posicionColumna){
+	this->accesoAParcela = this->terreno->obtener(posicionFila)->obtener(posicionColumna);
+	return this->accesoAParcela;
+}
+
+unsigned int Terreno::obtenerFilas(){
+	return this->cantidadFilas;
+}
+
+unsigned int Terreno::obtenerColumnas(){
+	return this->cantidadColumnas;
+}
+
+unsigned int Terreno::obtenerCantidadParcelas(){
+	return (this->obtenerFilas()*this->obtenerColumnas());
+}
+
+unsigned int Terreno::obtenerValor(){
+	return this->valor;
+}
+
+unsigned int Terreno::obtenerPrecioVenta(){
+	return this->precioVenta;
+}
+
+void Terreno::asignarValor(unsigned int cantidadParcelas, float dificultad){
+	this->valor = (cantidadParcelas*dificultad*IMPUESTO_A_LA_COMPRA);
+}
+
+void Terreno::actualizacionPorTurno(){
+	for (unsigned int i=1; i <= this->obtenerFilas(); i++) {
+		for (unsigned int j=1; j <= this->obtenerColumnas(); j++){
+			this->obtenerParcela(i,j)->verificarParcelaPodrida(i,j);
+			this->obtenerParcela(i,j)->verificarParcelaSeca(i,j);
+			if (this->obtenerParcela(i,j)->estaCreciendo()){
+				this->obtenerParcela(i,j)->actualizarTiempoCrecimiento();
+			}
+			else if (this->obtenerParcela(i,j)->estaRecuperandose() && !this->obtenerParcela(i,j)->estaPodrido()){
+				this->obtenerParcela(i,j)->actualizarTiempoRecuperacion();
+			}
+			this->obtenerParcela(i,j)->actualizarEstados();
 		}
 	}
 }
 
-Parcela Terreno::obtenerParcela(unsigned int posicionFila, unsigned int posicionColumna){
-	return this->terreno[posicionFila-1][posicionColumna-1];
-}
-
-Parcela* Terreno::modificarParcela(unsigned int posicionFila, unsigned int posicionColumna){
-	this->accesoATerreno = &this->terreno[posicionFila-1][posicionColumna-1];
-	return this->accesoATerreno;
-}
-
-unsigned int Terreno::obtenerFilas(){
-	return this->filas;
-}
-
-unsigned int Terreno::obtenerColumnas(){
-	return this->columnas;
-}
-
 Terreno::~Terreno(){
-	for(unsigned int i = 0; i < this->filas; i++)
-	   delete [] this->terreno[i];
-	delete [] this->terreno;
+	this->terreno->iniciarCursor();
+	while (this->terreno->avanzarCursor()){
+		Lista<Parcela*>* filaActual = this->terreno->obtenerCursor();
+		filaActual->iniciarCursor();
+		while (filaActual->avanzarCursor()){
+			Parcela* parcelaActual = filaActual->obtenerCursor();
+			delete parcelaActual;
+		}
+		delete filaActual;
+	}
+	delete this->terreno;
 }

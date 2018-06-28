@@ -1,3 +1,10 @@
+/*
+ * BolsaSemilla.cpp
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
+
 #include "Cosecha.h"
 
 Cosecha::Cosecha(std::string tipoCosecha, unsigned int cantidad)

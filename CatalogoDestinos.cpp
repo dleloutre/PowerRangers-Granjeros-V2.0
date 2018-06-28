@@ -1,3 +1,10 @@
+/*
+ * CatalogoDestinos.cpp
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #include "CatalogoDestinos.h"
 
 Destino* CatalogoDestinos::obtenerDestino(Lista<Destino*>* destinos, std::string cultivo){
@@ -34,4 +41,6 @@ Destino* CatalogoDestinos::obtenerDestino(Lista <Destino*>* destinos, unsigned i
 	}
 	return destino;
 }
+
+
 

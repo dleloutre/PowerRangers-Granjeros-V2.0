@@ -1,3 +1,11 @@
+/*
+ * Almacen.cpp
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
+
+
 #include "Almacen.h"
 
 Almacen::Almacen(float dificultad)

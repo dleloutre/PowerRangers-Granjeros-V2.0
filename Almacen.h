@@ -1,3 +1,10 @@
+/*
+ * Almacen.h
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
+
 #ifndef ALMACEN_H_
 #define ALMACEN_H_
 

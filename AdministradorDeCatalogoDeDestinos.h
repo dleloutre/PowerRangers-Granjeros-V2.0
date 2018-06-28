@@ -1,3 +1,10 @@
+/*
+ * CargarCatalogoDestinos.h
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #ifndef ADMINISTRADORDECATALOGODEDESTINOS_H_
 #define ADMINISTRADORDECATALOGODEDESTINOS_H_
 

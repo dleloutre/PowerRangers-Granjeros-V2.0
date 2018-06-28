@@ -1,3 +1,10 @@
+/*
+ * BMPTerreno.h
+ *
+ *  Created on: 24 may. 2018
+ *      Author: daniela
+ */
+
 #ifndef BMPTERRENO_H_
 #define BMPTERRENO_H_
 

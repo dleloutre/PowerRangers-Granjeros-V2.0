@@ -1,31 +1,36 @@
+/*
+ * Creditos.cpp
+ *
+ *  Created on: 16 may. 2018
+ *      Author: purrevil
+ */
 #include "Creditos.h"
+//#include <iostream>
 
-BolsaCreditos::BolsaCreditos(int n, int m, int dificultad)
+Creditos::Creditos(float dificultad)
 {
-	creditos = 2*(n*m)*dificultad;
-};
-
-bool BolsaCreditos::hayCreditosSuficientes(int creditos)
-{
-	return this->creditos >= creditos;
+	creditos = (2*CREDITOS_BASE)/dificultad;
 }
-int BolsaCreditos::pagar(int creditosAPagar)
-{	int creditosPagados= 0;
-	if(hayCreditosSuficientes(creditosAPagar))
-	{
-		this->creditos -= creditosAPagar;
-		creditosPagados = creditosAPagar;
-	}
-	return creditosPagados;
-};
 
-int BolsaCreditos::cobrar(int creditosACobrar)
+bool Creditos::hayCreditosSuficientes(unsigned int creditos)
+{
+	return (this->creditos >= creditos);
+}
+
+void Creditos::comprar(unsigned int creditosAPagar)
+{
+	this->creditos -= creditosAPagar;
+}
+
+void Creditos::vender(unsigned int creditosACobrar)
 {
 	this->creditos += creditosACobrar;
-	return creditosACobrar;
-};
+}
 
-int BolsaCreditos::obtenerCreditos()
+unsigned int Creditos::obtenerCreditos()
 {
 	return this->creditos;
-	}
+}
+
+
+

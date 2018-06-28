@@ -1,3 +1,10 @@
+/*
+ * cargarCatalogoSemillas.cpp
+ *
+ *  Created on: 17 may. 2018
+ *      Author: daniela
+ */
+
 #include <fstream>
 #include <sstream>
 #include "AdministradorDeCatalogoDeSemillas.h"
