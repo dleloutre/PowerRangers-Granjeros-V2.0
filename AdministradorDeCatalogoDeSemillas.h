@@ -1,17 +1,18 @@
-#ifndef CARGARCATALOGOSEMILLAS_H_
-#define CARGARCATALOGOSEMILLAS_H_
+#ifndef ADMINISTRADORDECATALOGODESEMILLAS_H_
+#define ADMINISTRADORDECATALOGODESEMILLAS_H_
 
 #include "Semilla.h"
 #include "Lista.h"
 #include "Traductor.h"
 
 const int CANTIDAD_DATOS_SEMILLAS = 6;
+const int CANTIDAD_MINIMA_SEMILLAS = 1;
 
-class CargarCatalogoSemillas{
+class AdministradorDeCatalogoDeSemillas{
 
 	private:
 
-		Lista<Semilla*>* semillas; // TAL VEZ NO
+		Lista<Semilla*>* semillas;
 
 	public:
 
@@ -19,7 +20,7 @@ class CargarCatalogoSemillas{
 		 * post: crea una lista de punteros a clase Cultivo y
 		 * la asigna a 'cultivos'
 		 */
-		CargarCatalogoSemillas();
+		AdministradorDeCatalogoDeSemillas();
 
 
 		/*
@@ -29,7 +30,6 @@ class CargarCatalogoSemillas{
 
 
 		/*
-		 * pre:
 		 * post: recibe un string tipo getline del metodo leerArchivo
 		 * cargar los datos en un vector, los convierte a enteros y se los pasa
 		 * al constructor Cultivo y los agrega a la lista 'cultivos'
@@ -39,16 +39,21 @@ class CargarCatalogoSemillas{
 		/*
 		 * post: devuelve el atributo 'cultivos'
 		 */
-		Lista<Semilla*>* obtenerPunteroAListaDeSemillas();
+		Lista<Semilla*>* obtenerListaDeSemillas();
+
+		/*
+		 * post: devuelve la cantidad de semillas que hay en el catalogo
+		 */
+		unsigned int obtenerCantidadSemillas();
 
 		/*
 		 * post: libera cada puntero a semilla que se fueron agregando
 		 * como datos a la lista
 		 */
-		~CargarCatalogoSemillas();
+		~AdministradorDeCatalogoDeSemillas();
 
 };
 
 
-#endif /* CARGARCATALOGOSEMILLAS_H_ */
+#endif /* ADMINISTRADORDECATALOGODESEMILLAS_H_ */
 
