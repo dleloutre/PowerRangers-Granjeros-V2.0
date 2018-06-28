@@ -5,13 +5,20 @@
 #include "Lista.h"
 
 class CatalogoSemillas{
-
 	public:
 
-		/*
-		 *
-		 */
-		Semilla* obtenerInformacionSemilla(Lista <Semilla*>* semillas, std::string nombreSemillaSeleccionada); //CLASE DISTINTA Y LE PASO LA LISTA, COMO EN ASTRONOMOS
+	/*
+	 * post: devuelve el puntero a la clase Semilla que tenga
+	 * como atributo 'nombreSemillaSeleccionada'
+	 */
+		Semilla* obtenerInformacionSemilla(Lista <Semilla*>* semillas, std::string nombreSemillaSeleccionada);
+
+	/*
+	 * post: devuelve el puntero a la clase Semilla que se encuentre en la posicion 'posicion' de la lista de semillas
+	 *
+	 */
+		Semilla* obtenerInformacionSemilla(Lista <Semilla*>* semillas, unsigned int posicion);
+
 
 };
 
